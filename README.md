@@ -1,7 +1,7 @@
 Render: render decorator helper for Django
 ==========================================
 
-This package provides function decorator for templates rendering in request context with dry use.
+This package provides decorators for templates rendering in request context with simpel code use.
 
 Usecase
 -------
@@ -52,6 +52,11 @@ Or you can return "ready to use HttpResponse" object. render wrapepr just return
 			'var1': val1,
 			'var2': val2,
 		}
+
+Into template context render add few variables.
+- _app - Application name, where was called view
+- _view - View function name
+- _layout - Base layout path. Compiles from APPNAME and base.html. Example: for news app it will be equal "news/base.html"
 
 It is clean & dry helper! Use it :-)
 
