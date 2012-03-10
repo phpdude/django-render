@@ -1,4 +1,3 @@
-# encoding: utf-8
 __author__ = 'phpdude'
 __version__ = (0, 1, 0)
 
