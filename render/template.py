@@ -16,6 +16,8 @@ def renderer(prefix=None):
             template_name, context_processors = '', {}
 
             mimetype = getattr(settings, 'DEFAULT_CONTENT_TYPE', 'text/html')
+            module_name = func.__module__.split(".")[0]
+
             response = func(request, *args, **kwargs)
             if isinstance(response, HttpResponse):
                 return response
@@ -40,11 +42,11 @@ def renderer(prefix=None):
                 else:
                     template_name = correct_path(template_name, tplprefix)
             else:
-                template_name = correct_path(template_name, func.__module__.split(".")[0] + "/")
+                template_name = correct_path(template_name, module_name + "/")
 
-            context_processors['App'] = func.__module__.split(".")[0]
+            context_processors['App'] = module_name
             context_processors['View'] = func.__name__
-            context_processors['Layout'] = correct_path('base.html', tplprefix or func.__module__.split(".")[0] + "/")
+            context_processors['Layout'] = correct_path('base.html', tplprefix or module_name + "/")
 
             return render_to_response(template_name, context_processors, context_instance=RequestContext(request), mimetype=mimetype)
 
