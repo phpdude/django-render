@@ -7,9 +7,7 @@ from render import correct_path
 
 __author__ = 'phpdude'
 
-def renderer(prefix=None):
-    tplprefix = prefix.rstrip('/') + "/" if prefix else ""
-
+def renderer(prefix=""):
     def renderer(func):
         @wraps(func)
         def wrapper(request, *args, **kwargs):
@@ -30,23 +28,22 @@ def renderer(prefix=None):
             if isinstance(response, basestring):
                 template_name = response
             elif isinstance(response, (tuple, list)):
-                len_tuple = len(response)
-                if len_tuple == 2:
+                if len(response) == 2:
                     template_name, context_processors = response
-                elif len_tuple == 3:
+                elif len(response) == 3:
                     template_name, context_processors, mimetype = response
 
-            if tplprefix:
+            if prefix:
                 if isinstance(template_name, (list, tuple)):
                     template_name = map(correct_path, template_name)
                 else:
-                    template_name = correct_path(template_name, tplprefix)
+                    template_name = correct_path(template_name, prefix)
             else:
-                template_name = correct_path(template_name, module_name + "/")
+                template_name = correct_path(template_name, module_name)
 
             context_processors['App'] = module_name
             context_processors['View'] = func.__name__
-            context_processors['Layout'] = correct_path('base.html', tplprefix or module_name + "/")
+            context_processors['Layout'] = correct_path('base.html', prefix or module_name)
 
             return render_to_response(template_name, context_processors, context_instance=RequestContext(request), mimetype=mimetype)
 
