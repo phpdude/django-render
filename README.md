@@ -56,9 +56,10 @@ Or you can return "ready to use HttpResponse" object. render wrapepr just return
 		}
 
 Into template context render add few variables.
-* __App__ - Application name, where was called view
-* __View__ - View function name
-* __Layout__ - Base layout path. Compiles from APPNAME and base.html. Example: for news app it will be equal "news/base.html"
+
+*  __App__ - Application name, where was called view
+*  __View__ - View function name
+*  __Layout__ - Base layout path. Compiles from APPNAME and base.html. Example: for news app it will be equal "news/base.html"
 
 Example in template:
 	{% extends Layout %}
