@@ -6,7 +6,7 @@ This package provides function decorator for templates rendering in request cont
 Usecase
 -------
 
-It support simple template
+It support simple template rendering with decorator function
 
 	@render
 	def index():
