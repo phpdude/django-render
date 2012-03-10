@@ -8,8 +8,6 @@ from render import correct_path
 
 __author__ = 'phpdude'
 
-MIMETYPE = getattr(settings, 'DEFAULT_CONTENT_TYPE')
-
 def renderer(prefix=None):
     tplprefix = prefix.rstrip('/') + "/" if prefix else ""
 
@@ -30,12 +28,12 @@ def renderer(prefix=None):
             if isinstance(response, basestring):
                 template_name = response
                 context_processors = {}
-                mimetype = MIMETYPE
+                mimetype = settings.DEFAULT_CONTENT_TYPE
             elif isinstance(response, (tuple, list)):
                 len_tuple = len(response)
                 if len_tuple == 2:
                     template_name, context_processors = response
-                    mimetype = MIMETYPE
+                    mimetype = settings.DEFAULT_CONTENT_TYPE
                 elif len_tuple == 3:
                     template_name, context_processors, mimetype = response
 
