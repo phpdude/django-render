@@ -8,11 +8,11 @@ Usecase
 
 It support simple template
 
-    @render
-    def index():
-        //index view logic goes here
-        return {
-            'var1': val1,
-            'var2': val2,
-        }
+	@render
+	def index():
+		//index view logic goes here
+		return {
+			'var1': val1,
+			'var2': val2,
+		}
 
