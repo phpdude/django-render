@@ -47,9 +47,9 @@ def renderer(prefix=None):
 			else:
 				template_name = correct_path(template_name, func.__module__.split(".")[0] + "/")
 
-			context_processors['_app'] = func.__module__.split(".")[0]
-			context_processors['_view'] = func.__name__
-			context_processors['_layout'] = correct_path('base.html', tplprefix or func.__module__.split(".")[0] + "/")
+			context_processors['App'] = func.__module__.split(".")[0]
+			context_processors['View'] = func.__name__
+			context_processors['Layout'] = correct_path('base.html', tplprefix or func.__module__.split(".")[0] + "/")
 
 			return render_to_response(template_name, context_processors, context_instance=RequestContext(request), mimetype=mimetype)
 
