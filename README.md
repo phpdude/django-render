@@ -1,7 +1,9 @@
-Render: render decorator helper for Django
+Render: render decorator helpers for Django
 ==========================================
 
-This package provides decorators for templates rendering in request context with simpel code use.
+This package provides decorators for templates rendering in request context with simple code use.
+
+__Important:__ all template renders goes in request context. Sessions, cookies, meta, etc is available from templates.
 
 Usecase
 -------
@@ -54,9 +56,9 @@ Or you can return "ready to use HttpResponse" object. render wrapepr just return
 		}
 
 Into template context render add few variables.
-- App - Application name, where was called view
-- View - View function name
-- Layout - Base layout path. Compiles from APPNAME and base.html. Example: for news app it will be equal "news/base.html"
+* __App__ - Application name, where was called view
+* __View__ - View function name
+* __Layout__ - Base layout path. Compiles from APPNAME and base.html. Example: for news app it will be equal "news/base.html"
 
 Example in template:
 	{% extends Layout %}
