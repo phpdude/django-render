@@ -49,7 +49,7 @@ def renderer(prefix=None):
 
 			context_processors['_app'] = func.__module__.split(".")[0]
 			context_processors['_view'] = func.__name__
-			context_processors['layout'] = correct_path('base.html', tplprefix or func.__module__.split(".")[0] + "/")
+			context_processors['_layout'] = correct_path('base.html', tplprefix or func.__module__.split(".")[0] + "/")
 
 			return render_to_response(template_name, context_processors, context_instance=RequestContext(request), mimetype=mimetype)
 
