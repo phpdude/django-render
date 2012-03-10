@@ -11,7 +11,7 @@ __author__ = 'phpdude'
 MIMETYPE = getattr(settings, 'DEFAULT_CONTENT_TYPE')
 
 def renderer(prefix=None):
-	tplprefix = prefix.rstrip('/') + "/"
+	tplprefix = prefix if prefix.rstrip('/') + "/" else ""
 
 	def renderer(func):
 		@wraps(func)
