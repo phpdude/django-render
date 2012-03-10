@@ -14,8 +14,9 @@ def renderer(prefix=None):
     def renderer(func):
         @wraps(func)
         def wrapper(request, *args, **kwargs):
-            template_name, mimetype, context_processors = '', '', ''
+            template_name, context_processors = '', {}
 
+            mimetype = getattr(settings, 'DEFAULT_CONTENT_TYPE', 'text/html')
             response = func(request, *args, **kwargs)
             if isinstance(response, HttpResponse):
                 return response
@@ -27,13 +28,10 @@ def renderer(prefix=None):
 
             if isinstance(response, basestring):
                 template_name = response
-                context_processors = {}
-                mimetype = settings.DEFAULT_CONTENT_TYPE
             elif isinstance(response, (tuple, list)):
                 len_tuple = len(response)
                 if len_tuple == 2:
                     template_name, context_processors = response
-                    mimetype = settings.DEFAULT_CONTENT_TYPE
                 elif len_tuple == 3:
                     template_name, context_processors, mimetype = response
 
