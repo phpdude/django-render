@@ -14,8 +14,8 @@ class RenderViewMixin():
         if self.template_name is None:
             template_name = ".".join((self.__module__, self.__class__.__name__)).lower().replace('.views.', '.')
             return ["%s.html" % template_name.replace('.', '/')]
-        else:
-            return [self.template_name]
+
+        return [self.template_name]
 
     def dispatch(self, request, *args, **kwargs):
         if request.method.lower() in View.http_method_names:
