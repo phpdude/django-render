@@ -5,8 +5,8 @@ This package provides decorators for templates rendering in request context with
 
 __Important:__ all template renders goes in request context. Sessions, cookies, meta, etc is available from templates.
 
-Usecase
--------
+Usage in functional views
+-------------------------
 
 It support simple template rendering with decorator function. It is basic use example. Will be
 rendered template "APPNAME/VIEWNAME.html"
@@ -19,6 +19,15 @@ rendered template "APPNAME/VIEWNAME.html"
             'var1': val1,
             'var2': val2,
         }
+
+    from render.template import render
+    @render
+    def index():
+        #index view logic goes here
+        return {
+            'var1': val1,
+            'var2': val2,
+        }, 'text/plain'
 
 You can override VIEWNAME part in template path. See example.
 
@@ -54,6 +63,58 @@ Or you can return "ready to use HttpResponse" object. render wrapepr just return
             'var1': val1,
             'var2': val2,
         }
+
+Usage in Class Based Views
+--------------------------
+
+It supports basic TemplateView's like
+
+class Index(RenderViewMixin, TemplateView):
+    pass
+
+It calculates template name as APP/VIEW.html
+
+You can override heuristic by declaring template_name variable like
+
+    class Index(RenderViewMixin, TemplateView):
+        template_name = 'custom.html'
+        pass
+
+This call APP/custom.html. Or you can add full template path like
+
+    class Index(RenderViewMixin, TemplateView):
+        template_name = 'otherapp/custom.html'
+        pass
+
+Then will be called 'otherapp/custom.html'
+
+Like functional view you can use render sugar in get/post/delete/etc request to your CBV.
+
+    class Index(RenderViewMixin, TemplateView):
+        def get(self, request, *args, **kwargs):
+            return {
+                "title": 'My awesome title!'
+            }
+
+Supported all sugar with defining template name, context data and mimetype.
+
+    class Index(RenderViewMixin, TemplateView):
+        def get(self, request, *args, **kwargs):
+            return 'print.html', {
+                "title": 'My awesome title!'
+            }, 'text/plain'
+
+It works and with global template_name defining.
+
+    class Index(RenderViewMixin, TemplateView):
+        template_name = 'default.html"
+        def get(self, request, *args, **kwargs):
+            return {
+                "title": 'My awesome title!'
+            }, 'text/plain'
+
+Template processing
+-------------------
 
 Into template context render add few variables.
 
