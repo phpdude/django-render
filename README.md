@@ -105,7 +105,7 @@ Supported all sugar with defining template name, context data and mimetype.
 It works and with global template_name defining.
 
     class Index(RenderViewMixin, TemplateView):
-        template_name = 'default.html"
+        template_name = 'default.html'
         def get(self, request, *args, **kwargs):
             return {
                 "title": 'My awesome title!'
