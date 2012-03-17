@@ -8,7 +8,7 @@ setup(name='django render',
       author_email='ya@helldude.ru',
       maintainer='Alexandr I. Shurigin',
       maintainer_email='ya@helldude.ru',
-      url='http://github.com/coffin/coffin',
+      url='https://github.com/phpdude/django-render',
       packages=find_packages(),
       classifiers=[
           "Framework :: Django",
