@@ -69,8 +69,8 @@ Usage in Class Based Views
 
 It supports basic TemplateView's like
 
-class Index(RenderViewMixin, TemplateView):
-    pass
+    class Index(RenderViewMixin, TemplateView):
+        pass
 
 It calculates template name as APP/VIEW.html
 
