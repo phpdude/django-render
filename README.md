@@ -1,7 +1,7 @@
-Render: render decorator helpers for Django
+Render: render sugar for Django
 ==========================================
 
-This package provides decorators for templates rendering in request context with simple code use.
+This package provides decorators for templates rendering and CBV mixin in request context with simple code use.
 
 __Important:__ all template renders goes in request context. Sessions, cookies, meta, etc is available from templates.
 
