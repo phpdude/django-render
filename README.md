@@ -78,13 +78,11 @@ You can override heuristic by declaring template_name variable like
 
     class Index(RenderViewMixin, TemplateView):
         template_name = 'custom.html'
-        pass
 
 This call APP/custom.html. Or you can add full template path like
 
     class Index(RenderViewMixin, TemplateView):
         template_name = 'otherapp/custom.html'
-        pass
 
 Then will be called 'otherapp/custom.html'
 
