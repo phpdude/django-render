@@ -1,7 +1,5 @@
 # encoding: utf-8
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
-from django.template.context import RequestContext
 from django.views.generic.base import View
 from render import process_response, correct_path
 
@@ -16,6 +14,21 @@ class RenderViewMixin():
             return ["%s.html" % template_name.replace('.', '/')]
 
         return [self.template_name]
+
+    def render_to_response(self, context, **response_kwargs):
+        """
+        Returns a response with a template rendered with the given context.
+        """
+        context['App'] = self.__module__.split('.')[0]
+        context['View'] = self.__class__.__name__.lower()
+        context['Layout'] = correct_path('base.html', context['App'])
+
+        return self.response_class(
+            request=self.request,
+            template=response_kwargs.pop('template', self.get_template_names()),
+            context=context,
+            **response_kwargs
+        )
 
     def dispatch(self, request, *args, **kwargs):
         if request.method.lower() in View.http_method_names:
@@ -40,4 +53,4 @@ class RenderViewMixin():
         context_processors['View'] = self.__class__.__name__.lower()
         context_processors['Layout'] = correct_path('base.html', module_name)
 
-        return render_to_response(template_name, context_processors, context_instance=RequestContext(request), mimetype=mimetype)
+        return self.render_to_response(context_processors, mimetype=mimetype, template=template_name)
