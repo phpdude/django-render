@@ -12,8 +12,6 @@ setup(name='django-render',
       packages=find_packages(),
       classifiers=[
           "Framework :: Django",
-          "Intended Audience :: Developers",
-          "Intended Audience :: System Administrators",
           "Operating System :: OS Independent",
           "Topic :: Software Development"
       ],
