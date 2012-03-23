@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 from setuptools import setup, find_packages
 
-setup(name='django render',
+setup(name='django-render',
       version=".".join(map(str, __import__("render").__version__)),
-      description='Django templates rendering decorator',
+      description='Django templates rendering sugar',
       author='Alexandr I. Shurigin',
       author_email='ya@helldude.ru',
       maintainer='Alexandr I. Shurigin',
