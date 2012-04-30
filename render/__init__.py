@@ -1,7 +1,7 @@
 from django.conf import settings
 
 __author__ = 'phpdude'
-__version__ = (0, 3, 1)
+__version__ = (0, 3, 2)
 
 def correct_path(template_name, prefix):
     if template_name.startswith('/'):
