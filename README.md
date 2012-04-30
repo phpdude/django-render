@@ -5,6 +5,12 @@ This package provides decorators for templates rendering and CBV mixin in reques
 
 __Important:__ all template renders goes in request context. Sessions, cookies, meta, etc is available from templates.
 
+Installation
+------------
+
+You can install library via pip.
+    pip install django-render
+
 Supports coffin (jinja2 adapter for django)
 -------------------------
 
