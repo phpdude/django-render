@@ -1,7 +1,8 @@
 # encoding: utf-8
 from django.http import HttpResponse
+from django.template.context import RequestContext
 from django.views.generic.base import View
-from render import process_response, correct_path
+from render import process_response, correct_path, render_template
 
 __author__ = 'phpdude'
 
@@ -23,10 +24,10 @@ class RenderViewMixin():
         context['View'] = self.__class__.__name__.lower()
         context['Layout'] = correct_path('base.html', context['App'])
 
-        return self.response_class(
-            request=self.request,
-            template=response_kwargs.pop('template', self.get_template_names()),
-            context=context,
+        return render_template(
+            response_kwargs.pop('template', self.get_template_names()),
+            context,
+            context_instance=RequestContext(self.request),
             **response_kwargs
         )
 

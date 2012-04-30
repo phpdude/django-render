@@ -28,3 +28,11 @@ def process_response(response, tplname):
             template_name, context_processors, mimetype = response
 
     return template_name, context_processors, mimetype
+
+if getattr(settings, 'RENDER_ENGINE', 'django').tolower() == 'coffin':
+    from coffin.shortcuts import render_to_response
+else:
+    from django.shortcuts import render_to_response
+
+def render_template(template_name, context_processors=None, context_instance=None, mimetype=None):
+    return render_to_response(template_name, context_processors, context_instance, mimetype)

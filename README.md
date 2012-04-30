@@ -5,6 +5,15 @@ This package provides decorators for templates rendering and CBV mixin in reques
 
 __Important:__ all template renders goes in request context. Sessions, cookies, meta, etc is available from templates.
 
+Supports coffin (jinja2 adapter for django)
+-------------------------
+
+You can select template render engine via settings.py directive.
+
+    RENDER_ENGINE='coffin'
+
+django-render will use coffin adapter for rendering templates transparent.
+
 Usage in functional views
 -------------------------
 

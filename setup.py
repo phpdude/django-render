@@ -14,5 +14,5 @@ setup(name='django-render',
           "Framework :: Django",
           "Operating System :: OS Independent",
           "Topic :: Software Development"
-      ],
+      ], requires=['django', "coffin"],
       )

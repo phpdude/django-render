@@ -1,8 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.utils.functional import wraps
-from render import correct_path, process_response
+from render import correct_path, process_response, render_template
 
 __author__ = 'phpdude'
 
@@ -30,7 +29,8 @@ def renderer(prefix=""):
             context_processors['View'] = func.__name__
             context_processors['Layout'] = correct_path('base.html', prefix or module_name)
 
-            return render_to_response(template_name, context_processors, context_instance=RequestContext(request), mimetype=mimetype)
+            return render_template(template_name, context_processors, context_instance=RequestContext(request),
+                mimetype=mimetype)
 
         return wrapper
 
