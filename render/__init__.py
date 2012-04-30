@@ -1,7 +1,7 @@
 from django.conf import settings
 
 __author__ = 'phpdude'
-__version__ = (0, 3, 2)
+__version__ = (0, 3, 4)
 
 def correct_path(template_name, prefix):
     if template_name.startswith('/'):
@@ -36,4 +36,8 @@ def render_template(template_name, context_processors=None, context_instance=Non
     else:
         from django.shortcuts import render_to_response
 
-    return render_to_response(template_name, context_processors, context_instance, mimetype)
+    return render_to_response(template_name,
+        dictionary=context_processors,
+        context_instance=context_instance,
+        mimetype=mimetype
+    )
