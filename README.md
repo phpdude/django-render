@@ -9,6 +9,7 @@ Installation
 ------------
 
 You can install library via pip.
+
     pip install django-render
 
 Supports coffin (jinja2 adapter for django)
