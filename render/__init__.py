@@ -1,5 +1,5 @@
 __author__ = 'phpdude'
-__version__ = (0, 3, 5)
+__version__ = (0, 3, 7)
 
 def correct_path(template_name, prefix):
     if template_name.startswith('/'):
@@ -32,13 +32,14 @@ def process_response(response, tplname):
 
 def render_template(template_name, context_processors=None, context_instance=None, mimetype=None):
     from django.conf import settings
+
     if getattr(settings, 'RENDER_ENGINE', 'django').lower() == 'coffin':
         from coffin.shortcuts import render_to_response
     else:
         from django.shortcuts import render_to_response
 
     return render_to_response(template_name,
-        dictionary=context_processors,
-        context_instance=context_instance,
-        mimetype=mimetype
+                              dictionary=context_processors,
+                              context_instance=context_instance,
+                              mimetype=mimetype
     )
