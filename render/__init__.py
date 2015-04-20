@@ -1,5 +1,5 @@
 __author__ = 'phpdude'
-__version__ = (0, 3, 7)
+__version__ = (0, 3, 8)
 
 def correct_path(template_name, prefix):
     if template_name.startswith('/'):
